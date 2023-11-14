@@ -114,6 +114,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             Pokemon1.setPosition(EthanL.x, EthanL.y)
             Pokemon1.follow(EthanL, 50)
         }
+    } else {
+        if (toolbar.get_number(ToolbarNumberAttribute.SelectedIndex) == 0 && 5 >= spriteutils.distanceBetween(EthanL, Pokemon1)) {
+            sprites.destroy(Pokemon1)
+        }
     }
 })
 controller.down.onEvent(ControllerButtonEvent.Released, function () {
