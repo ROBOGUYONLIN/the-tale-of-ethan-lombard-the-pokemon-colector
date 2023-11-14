@@ -84,6 +84,10 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile6`, function (sprite, location) {
+    tiles.setCurrentTilemap(tilemap`level1`)
+    tiles.placeOnRandomTile(EthanL, assets.tile`myTile8`)
+})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     toolbar.change_number(ToolbarNumberAttribute.SelectedIndex, 1)
     if (toolbar.get_number(ToolbarNumberAttribute.MaxItems) < toolbar.get_number(ToolbarNumberAttribute.SelectedIndex)) {
@@ -381,6 +385,10 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, location) {
+    tiles.setCurrentTilemap(tilemap`level`)
+    tiles.placeOnRandomTile(EthanL, assets.tile`myTile0`)
+})
 let Pokemon1: Sprite = null
 let Requarza: Inventory.Item = null
 let EthanL: Sprite = null
@@ -531,7 +539,7 @@ scene.setBackgroundImage(img`
     8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
     8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
     `)
-tiles.setCurrentTilemap(tilemap`level1`)
+tiles.setCurrentTilemap(tilemap`level`)
 for (let index = 0; index < 4; index++) {
     tiles.placeOnRandomTile(EthanL, assets.tile`myTile0`)
     scene.cameraFollowSprite(EthanL)
