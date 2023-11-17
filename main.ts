@@ -151,7 +151,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     } else {
         if (toolbar.get_number(ToolbarNumberAttribute.SelectedIndex) == 0 && 5 >= spriteutils.distanceBetween(EthanL, Pokemon1)) {
-            sprites.destroy(Pokemon1)
+            if (isrequarzainvisible) {
+                isrequarzainvisible = false
+            } else {
+                isrequarzainvisible = true
+            }
         }
     }
 })
@@ -420,6 +424,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
     tiles.setCurrentTilemap(tilemap`level`)
     tiles.placeOnRandomTile(EthanL, assets.tile`myTile0`)
 })
+let isrequarzainvisible = false
 let Pokemon1: Sprite = null
 let Npc1: Sprite = null
 let Requarza: Inventory.Item = null
@@ -583,4 +588,13 @@ forever(function () {
 })
 forever(function () {
     toolbar.update()
+})
+forever(function () {
+    if (Pokemon1) {
+        if (isrequarzainvisible) {
+            Pokemon1.setFlag(SpriteFlag.Invisible, true)
+        } else {
+            Pokemon1.setFlag(SpriteFlag.Invisible, false)
+        }
+    }
 })
