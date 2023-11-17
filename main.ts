@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const Frendilypokemon = SpriteKind.create()
+    export const Npc = SpriteKind.create()
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile1`, function (sprite, location) {
     if (!(Hasgottenpokemon)) {
@@ -87,6 +88,27 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile6`, function (sprite, location) {
     tiles.setCurrentTilemap(tilemap`level1`)
     tiles.placeOnRandomTile(EthanL, assets.tile`myTile8`)
+    if (!(Npc1)) {
+        Npc1 = sprites.create(img`
+            . . . . f f f f f . . . . . . . 
+            . . . f e e e e e f . . . . . . 
+            . . f d d d d e e e f . . . . . 
+            . c d f d d f d e e f f . . . . 
+            . c d f d d f d e e d d f . . . 
+            c d e e d d d d e e b d c . . . 
+            c d d d d c d d e e b d c . f f 
+            c c c c c d d d e e f c . f e f 
+            . f d d d d d e e f f . . f e f 
+            . . f f f f f e e e e f . f e f 
+            . . . . f e e e e e e e f f e f 
+            . . . f e f f e f e e e e f f . 
+            . . . f e f f e f e e e e f . . 
+            . . . f d b f d b f f e f . . . 
+            . . . f d d c d d b b d f . . . 
+            . . . . f f f f f f f f f . . . 
+            `, SpriteKind.Npc)
+        tiles.placeOnRandomTile(Npc1, assets.tile`myTile9`)
+    }
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     toolbar.change_number(ToolbarNumberAttribute.SelectedIndex, 1)
@@ -94,29 +116,38 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         toolbar.set_number(ToolbarNumberAttribute.SelectedIndex, 0)
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Npc, function (sprite, otherSprite) {
+    if (otherSprite == Npc1) {
+        if (Hasgottenpokemon && Pokemon1) {
+        	
+        }
+    }
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(Pokemon1)) {
         if (toolbar.get_number(ToolbarNumberAttribute.SelectedIndex) == 0) {
-            Pokemon1 = sprites.create(img`
-                . 9 9 9 9 9 f f f f f 7 5 5 7 6 
-                9 f f f f f 5 5 7 7 7 7 7 7 7 6 
-                f 5 5 5 5 5 7 7 7 7 7 7 f 6 6 6 
-                f 5 7 7 7 7 7 7 7 f f f f 6 6 f 
-                f 5 7 f 1 7 7 7 7 f 7 7 f 6 f f 
-                f 5 1 f f 7 7 7 7 7 2 f f 6 f 9 
-                f 5 f f e e e e 7 f f f 6 7 f 9 
-                f 5 e 2 2 2 e 7 7 f f 6 7 7 f 9 
-                f e 2 2 2 e f f f 9 f 6 7 7 f 9 
-                f f f f f f 9 9 f f f 6 7 f f 9 
-                9 9 9 9 9 f f 2 6 6 6 7 7 f 9 . 
-                9 f f f f f 2 6 7 7 7 f f f . . 
-                . 9 f 2 2 2 5 7 7 7 f 9 9 9 . . 
-                . . 9 f f f 2 2 2 f f 9 . . . . 
-                . . . 9 9 f f f f 9 9 . . . . . 
-                . . . . 9 9 9 9 9 . . . . . . . 
-                `, SpriteKind.Frendilypokemon)
-            Pokemon1.setPosition(EthanL.x, EthanL.y)
-            Pokemon1.follow(EthanL, 50)
+            if (Hasgottenpokemon == true) {
+                Pokemon1 = sprites.create(img`
+                    . 9 9 9 9 9 f f f f f 7 5 5 7 6 
+                    9 f f f f f 5 5 7 7 7 7 7 7 7 6 
+                    f 5 5 5 5 5 7 7 7 7 7 7 f 6 6 6 
+                    f 5 7 7 7 7 7 7 7 f f f f 6 6 f 
+                    f 5 7 f 1 7 7 7 7 f 7 7 f 6 f f 
+                    f 5 1 f f 7 7 7 7 7 2 f f 6 f 9 
+                    f 5 f f e e e e 7 f f f 6 7 f 9 
+                    f 5 e 2 2 2 e 7 7 f f 6 7 7 f 9 
+                    f e 2 2 2 e f f f 9 f 6 7 7 f 9 
+                    f f f f f f 9 9 f f f 6 7 f f 9 
+                    9 9 9 9 9 f f 2 6 6 6 7 7 f 9 . 
+                    9 f f f f f 2 6 7 7 7 f f f . . 
+                    . 9 f 2 2 2 5 7 7 7 f 9 9 9 . . 
+                    . . 9 f f f 2 2 2 f f 9 . . . . 
+                    . . . 9 9 f f f f 9 9 . . . . . 
+                    . . . . 9 9 9 9 9 . . . . . . . 
+                    `, SpriteKind.Frendilypokemon)
+                Pokemon1.setPosition(EthanL.x, EthanL.y)
+                Pokemon1.follow(EthanL, 50)
+            }
         }
     } else {
         if (toolbar.get_number(ToolbarNumberAttribute.SelectedIndex) == 0 && 5 >= spriteutils.distanceBetween(EthanL, Pokemon1)) {
@@ -390,6 +421,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
     tiles.placeOnRandomTile(EthanL, assets.tile`myTile0`)
 })
 let Pokemon1: Sprite = null
+let Npc1: Sprite = null
 let Requarza: Inventory.Item = null
 let EthanL: Sprite = null
 let toolbar: Inventory.Toolbar = null
@@ -544,6 +576,11 @@ for (let index = 0; index < 4; index++) {
     tiles.placeOnRandomTile(EthanL, assets.tile`myTile0`)
     scene.cameraFollowSprite(EthanL)
 }
+forever(function () {
+    if (Hasgottenpokemon && Pokemon1) {
+        Npc1.sayText("Do you want a Pokémon?")
+    }
+})
 forever(function () {
     toolbar.update()
 })
